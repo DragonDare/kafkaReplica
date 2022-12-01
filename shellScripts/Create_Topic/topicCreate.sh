@@ -16,6 +16,7 @@ a
 l=$?
 
 cd ~/Desktop/BD_Project/shellScripts
+cd /usr/app/src 
 
 if [[ $l == $BROKER_FAIL ]] 
 then

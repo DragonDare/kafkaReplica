@@ -23,5 +23,5 @@ do
 	fi
 done
 
-cd De*/B*/she*
-	
+#cd De*/B*/she*
+cd /usr/app/src	
