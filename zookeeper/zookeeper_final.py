@@ -6,9 +6,9 @@ socket_1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socket_3 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-socket_1.bind(('127.0.0.1', 9997))
-socket_2.bind(('127.0.0.1', 9998))
-socket_3.bind(('127.0.0.1', 9999))
+socket_1.bind(('172.22.0.4', 9997))
+socket_2.bind(('172.22.0.4', 9998))
+socket_3.bind(('172.22.0.4', 9999))
 
 # path = "/Users/sailu/Documents/BD/zookeeper"
 
