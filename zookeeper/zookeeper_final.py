@@ -1,27 +1,3 @@
-def update():
-    k = 0
-    print(leader)
-    for i in leader:
-        if (i > 0):
-            print("partition: "+str(k)+" ------>broker: "+str(i)+"")
-            activepartitions[k] = path+'/part'+str(k)+'_'+str(i)
-        k = k+1
-
-
-def init_leader():
-    for i in range(4):
-        leader[i] = i
-    update()
-
-
-def switch_leader(failedbroker):
-    for i in range(len(leader)):
-        if (leader[i] == failedbroker):
-            nextbroker = (leader[i]+1) % 4
-            while (leader[nextbroker] < 1):
-                nextbroker = (nextbroker+1) % 4
-            leader[i] = nextbroker
-    update()
 import socket
 import select
 from datetime import datetime
@@ -34,17 +10,38 @@ socket_1.bind(('127.0.0.1', 9997))
 socket_2.bind(('127.0.0.1', 9998))
 socket_3.bind(('127.0.0.1', 9999))
 
-path = "/Users/sailu/Documents/BD/zookeeper"
+# path = "/Users/sailu/Documents/BD/zookeeper"
 
-leader = [0,0,0,0]
-activepartitions=[0,0,0,0]
+# leader = [0, 0, 0, 0]
+# activepartitions = [0, 0, 0, 0]
+
+
 
 poller = select.poll()
 poller.register(socket_1, select.POLLIN)
 poller.register(socket_2, select.POLLIN)
 poller.register(socket_3, select.POLLIN)
 
-
+# def update():
+#     k=0
+#     print(leader)
+#     for i in leader:
+#         if(i>0):
+#             print("partition: "+str(k)+" ------> broker: "+str(i)+"")
+#             activepartitions[k]=path+'/part'+str(k)+'_'+str(i)
+#         k=k+1
+# def init_leader():
+#     for i in range(4):
+#         leader[i]=i
+#     update()
+# def switch_leader(failedbroker):
+#     for i in range(len(leader)): 
+#         if(leader[i]==failedbroker):
+#             nextbroker = (leader[i]+1)%4
+#             while(leader[nextbroker]<1):
+#                 nextbroker =(nextbroker+1)%4
+#             leader[i]=nextbroker
+#     update()
 
 
 iterations = 0
@@ -62,7 +59,9 @@ leader_ran3 = 0
 
 now = datetime.now()
 start_time = now.second
-init_leader()
+
+# init_leader()
+
 while 1:
     #every 60 seconds check the health of all brokers
     #run leader selection for dead brokers
@@ -76,13 +75,10 @@ while 1:
         #print("alive3: ",alive3)
         if alive1 == 0:
             print("run leader selection for broker1")
-            switch_leader(1)
         if alive2 == 0:
             print("run leader selection for broker2")
-            switch_leader(2)
         if alive3 == 0:
             print("run leader selection for broker3")
-            switch_leader(3)
         
     evts = poller.poll(20)
     # alive1 = 0
@@ -135,3 +131,9 @@ while 1:
             else:
                 count3=0
             iterations = 0
+
+            
+
+
+                 
+            
