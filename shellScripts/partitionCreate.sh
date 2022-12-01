@@ -12,7 +12,7 @@ a() {
 	cd
 	cd brokerFS || return $BROKER_FAIL
 	cd $p || return $TOPIC_FAIL
-	test -f partition1_1.txt || touch partition1_1.txt || return $PARTITION_FAIL
+	test -f partition1_1.txt && touch temp.txt && touch tempWhole.txt || touch partition1_1.txt || return $PARTITION_FAIL
 	test -f partition1_2.txt || touch partition1_2.txt || return $PARTITION_FAIL
 	test -f partition1_3.txt || touch partition1_3.txt || return $PARTITION_FAIL
 	python ~/Desktop/BD_Project/shellScripts/MessageDivide.py $s || return $MESSAGE_FAIL
